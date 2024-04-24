@@ -13,6 +13,7 @@ import { NewNote } from "./components/new-note-card";
 // grid (set the display to grid)
 // grid-cols-x (set the number of grids to x)
 // gap-6 (sets a gap of 6 between the grids)
+
 export function App() {
   return (
     <div className="mx-auto max-w-6xl my-12 space-y-6">
@@ -28,9 +29,12 @@ export function App() {
 
       <div className="grid grid-cols-3 auto-rows-[250px] gap-6">
         <NewNote />
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
+        <NoteCard
+          note={{
+            creationDate: new Date(),
+            content: "Hello World!",
+          }}
+        />
       </div>
     </div>
   );
