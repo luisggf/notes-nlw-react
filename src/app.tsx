@@ -3,6 +3,7 @@ import { NoteCard } from "./components/note-card";
 import { NewNote } from "./components/new-note-card";
 import { ChangeEvent, useState } from "react";
 import { toast } from "sonner";
+import { LogIn } from "./components/signin";
 
 // TAILWIND CLASSES ================
 // p-x (padding-x)
@@ -24,6 +25,7 @@ interface Note {
 
 export function App() {
   const [SearchNote, SetSearchNote] = useState("");
+  const [IsLoggedIn, setIsLoggedIn] = useState(false);
   const [notes, setNotes] = useState<Note[]>(() => {
     const NotesOnStorage = localStorage.getItem("notes");
     if (NotesOnStorage) {
@@ -65,28 +67,47 @@ export function App() {
     toast.success("Note has been sucessfully deleted!");
   }
 
+  function HandleUserLogin() {
+    setIsLoggedIn(true);
+  }
   return (
     <div className="mx-auto max-w-6xl my-12 space-y-6 px-5">
-      <img src={logo} alt="NLW Expert" />
-      <form className="w-full">
-        <input
-          type="text"
-          placeholder="Search through your notes..."
-          className="w-full bg-transparent text-3xl font-semibold tracking-tight placeholder: text-slate-500 outline-none "
-          onChange={handleSearch}
-        />
-      </form>
-      <div className="h-px bg-slate-700" />
+      {!IsLoggedIn ? (
+        <LogIn OnUserLogin={HandleUserLogin} />
+      ) : (
+        <>
+          <h1 className="text-slate-200 font-bold text-5xl">
+            Welcome,{" "}
+            <span className="text-5xl font-extrabold text-lime-300">
+              User X
+            </span>
+          </h1>
+          <img src={logo} alt="NLW Expert" />
+          <form className="w-full">
+            <input
+              type="text"
+              placeholder="Search through your notes..."
+              className="w-full bg-transparent text-3xl font-semibold tracking-tight placeholder: text-slate-500 outline-none "
+              onChange={handleSearch}
+            />
+          </form>
+          <div className="h-px bg-slate-700" />
 
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 auto-rows-[250px] gap-6">
-        <NewNote onNoteCreated={OnNoteCreated} />
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 auto-rows-[250px] gap-6">
+            <NewNote onNoteCreated={OnNoteCreated} />
 
-        {filterNotes.map((note) => {
-          return (
-            <NoteCard key={note.id} note={note} onNoteDeleted={DeleteNote} />
-          );
-        })}
-      </div>
+            {filterNotes.map((note) => {
+              return (
+                <NoteCard
+                  key={note.id}
+                  note={note}
+                  onNoteDeleted={DeleteNote}
+                />
+              );
+            })}
+          </div>
+        </>
+      )}
     </div>
   );
 }
