@@ -3,7 +3,7 @@ import { NoteCard } from "./components/note-card";
 import { NewNote } from "./components/new-note-card";
 import { ChangeEvent, useState } from "react";
 import { toast } from "sonner";
-import { LogIn } from "./components/signin";
+import { LogIn } from "./components/login";
 
 // TAILWIND CLASSES ================
 // p-x (padding-x)

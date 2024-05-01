@@ -5,30 +5,34 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "server": "tsx watch src/http/server.ts",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fastify/vite": "^6.0.6",
     "@prisma/client": "^5.13.0",
     "@radix-ui/react-dialog": "^1.0.5",
     "date-fns": "^3.6.0",
     "fastify": "^4.26.2",
     "lucide-react": "^0.373.0",
     "prisma": "^5.13.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "sonner": "^1.4.41",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/dom-speech-recognition": "^0.0.4",
+    "@types/node": "^20.12.7",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
-    "typescript": "^5.2.2",
-    "vite": "^5.2.0"
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.10"
   }
 }

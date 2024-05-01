@@ -50,7 +50,7 @@ export function NewNote({ onNoteCreated }: NewNoteCard) {
 
     SpeechRecognition = new SpeechRecognitionAPI();
 
-    // SpeechRecognition.lang = "pt-BR";
+    SpeechRecognition.lang = "pt-BR";
 
     SpeechRecognition.continuous = true;
 
